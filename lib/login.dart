@@ -95,7 +95,7 @@ class LoginInfo extends ChangeNotifier {
       });
 
       await client.users.authViaEmail(email, password);
-      userId = user.profile!.id;
+      userId = user.id;
       this.email = email;
       this.name = name;
       loggedIn = true;

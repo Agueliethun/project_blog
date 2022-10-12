@@ -63,8 +63,6 @@ class BlogModel extends ChangeNotifier {
     final authToken = client.authStore.token;
     final authModel = client.authStore.model;
 
-    await client.admins.authViaEmail("murnkamp@gmail.com", "Serendethur98");
-
     List<Post> retList = [];
 
     _commentIds.clear();
@@ -140,9 +138,6 @@ class BlogModel extends ChangeNotifier {
         }
       }
 
-      client.authStore.clear();
-      client.authStore.save(authToken, authModel);
-
       retList.add(Post(record.getStringValue("title"), content, tags, comments,
           false, record.id));
     }
@@ -151,10 +146,6 @@ class BlogModel extends ChangeNotifier {
     _posts.addAll(retList);
 
     notifyListeners();
-
-    // Timer.periodic(const Duration(minutes: 30), (timer) {
-    //   getPosts();
-    // });
 
     return retList;
   }
